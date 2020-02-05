@@ -9,10 +9,10 @@ const Dialogs = (props) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <Dialog listItem={props.props['listItem']}/>
+                <Dialog listItem={props.dialogData}/>
             </div>
             <div className={s.messages}>
-                <Message messageData={props.props['messageData']}/>
+                <Message messageData={props.dialogData}/>
             </div>
         </div>
     )
