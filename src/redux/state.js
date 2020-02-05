@@ -20,7 +20,14 @@ let state = {
             {id: '4', name: 'Влада'},
             {id: '5', name: 'Виктория'},
         ]
-    }
+    },
+    navbarPage: {
+        toolbarFriehds: [
+            {id: '1', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQUTWh8wV_7aMa1slAC4kEnhXTqy89iZOrn-SS8eZat01OHzSa7', name: 'Anna'},
+            {id: '2', src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWfQ9gknu_TQkjGrse9yXPYteq2dvZfjbUGSzSBAReiHBzob5z", name: 'Masha'},
+            {id: '2', src: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS7kcIgeRHXJRAAQWcVWfemMQjHCsNtOsu6o_1il6Oka45DxBYp", name: 'Sarah'},
+        ]
+    },
 };
 
 export default state
