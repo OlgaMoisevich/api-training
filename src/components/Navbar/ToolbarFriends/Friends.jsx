@@ -11,15 +11,13 @@ const Friends = (props) => {
                 {
                     props.props.map(item => {
                             return <div className={s.friendsItem}>
-                                <img src={item.src} alt=""/><br/>
-                                <span>{item.name}</span>
+                                <img className={s.ava} src={item.src} alt=""/>
+                                <p>{item.name}</p>
                             </div>
                         }
                     )
                 }
             </div>
-            }
-            )
         </div>
     )
 };
