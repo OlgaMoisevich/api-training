@@ -13,13 +13,13 @@ const Navbar = (props) => {
                 <NavLink to="/dialogs" activeClassName={s.activeLink}>Message</NavLink>
             </div>
             <div className={s.item}>
-                News
+               <NavLink to="/dialogs2" activeClassName={s.activeLink}>News</NavLink>
             </div>
             <div className={s.item}>
-                Music
+                <NavLink to="/dialogs3" activeClassName={s.activeLink}>Music</NavLink>
             </div>
             <div className={s.item}>
-                Settings
+                <NavLink to="/dialogs4" activeClassName={s.activeLink}>Settings</NavLink>
             </div>
             <Friends props={props.props.toolbarFriehds}/>
         </nav>

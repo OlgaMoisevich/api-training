@@ -4,6 +4,10 @@
     padding: 20px;
 }
 
+.item{
+    margin: 10px 10px 10px 0;
+}
+
 .item a {
     color: #fff;
     text-decoration: none;
