@@ -4,13 +4,13 @@ import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 
 
-const Dialogs = (props) => {
-    debugger
-    let el = React.createRef();
-    // getElement.current.value;
 
-// window.text = el
-    let fff = props.props.updateNewPostText
+const Dialogs = (props) => {
+    let el = React.createRef();
+
+    let onPostChangeDialog = ()=>{
+        props.props.updateNewPostText_1(el.current.value)
+    };
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -20,8 +20,10 @@ const Dialogs = (props) => {
                 <Message messageData={props.dialogData}/>
             </div>
             <div>
-                <textarea name="" id="" cols="30" rows="5" ref={el} onChange={props.props.updateNewPostText}/>
+                <textarea name="" id="" cols="30" rows="5" ref={el}  onChange={onPostChangeDialog}/>
                 <button>Add</button>
+                <br/>
+                <span>{props.props.state.profilePage.newPostTextDialog}</span>
             </div>
         </div>
     )

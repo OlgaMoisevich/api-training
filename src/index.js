@@ -1,4 +1,4 @@
-import state, {subscribe} from './redux/state'
+import state, {subscribe, updateNewPostText_1} from './redux/state'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -9,7 +9,7 @@ import {addPost, updateNewPostText} from './redux/state'
 
 let rerenderEntireTree = () => {
     ReactDOM.render(<App state={state} addPost={addPost} updateNewPostText={updateNewPostText}
-
+                         updateNewPostText_1={updateNewPostText_1}
     />, document.getElementById('root'));
 };
 
