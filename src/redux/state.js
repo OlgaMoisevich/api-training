@@ -102,26 +102,41 @@ let store = {
             return this._state;
         },
         subscribe(observer) {
-            console.log('THIS1', this);
             this.__subscriber = observer;
         },
-        addPost() {
-            let new_Post = {
-                id: '6', message: this._state.profilePage.newPostText, likesCount: 0
-            };
-            this._state.profilePage.posts.push(new_Post);
-            this._state.profilePage.newPostText = '';
-            this.__subscriber()
-        },
-        updateNewPostText(newText) {
-            this._state.profilePage.newPostText = newText;
-            this.__subscriber()
-        },
-        updateNewPostText_1: function (newText) {
-            console.log('this', this)
-            this._state.profilePage.newPostTextDialog = newText;
-            this.__subscriber()
-        },
+        // addPost() {
+        //     let new_Post = {
+        //         id: '6', message: this._state.profilePage.newPostText, likesCount: 0
+        //     };
+        //     this._state.profilePage.posts.push(new_Post);
+        //     this._state.profilePage.newPostText = '';
+        //     this.__subscriber()
+        // },
+        // updateNewPostText(newText) {
+        //     this._state.profilePage.newPostText = newText;
+        //     this.__subscriber()
+        // },
+        // updateNewPostText_1: function (newText) {
+        //     this._state.profilePage.newPostTextDialog = newText;
+        //     this.__subscriber()
+        // },
+
+        dispatch(action){
+            if(action.type === 'ADD-POST'){
+                let new_Post = {
+                    id: '6', message: this._state.profilePage.newPostText, likesCount: 0
+                };
+                this._state.profilePage.posts.push(new_Post);
+                this._state.profilePage.newPostText = '';
+                this.__subscriber()
+            }else if(action.type === 'UPDATE-NEW-POST-TEXT'){
+                this._state.profilePage.newPostText = action.newText;
+                this.__subscriber()
+            }else if(action.type === 'UPDATE-NEW-POST-TEXT_1'){
+                this._state.profilePage.newPostTextDialog = action.newText;
+                this.__subscriber()
+            }
+        }
 };
 
 export default store;

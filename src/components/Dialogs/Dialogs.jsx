@@ -9,7 +9,7 @@ const Dialogs = (props) => {
     let el = React.createRef();
 
     let onPostChangeDialog = function(){
-        props.props.updateNewPostText_1(el.current.value)
+        props.props.dispatch({'type': 'UPDATE-NEW-POST-TEXT_1', 'newText': el.current.value});
     };
     return (
         <div className={s.dialogs}>
