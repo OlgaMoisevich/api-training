@@ -8,7 +8,7 @@ import DialogItem from "./DialogItem/DialogItem";
 const Dialogs = (props) => {
     let el = React.createRef();
 
-    let onPostChangeDialog = ()=>{
+    let onPostChangeDialog = function(){
         props.props.updateNewPostText_1(el.current.value)
     };
     return (
