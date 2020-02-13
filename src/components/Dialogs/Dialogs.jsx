@@ -2,15 +2,20 @@ import React from 'react'
 import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-
+import {updateNewMessageBodyCreator_dialogs, updateNewTextActionCreator_dialogs} from "../../redux/state";
 
 
 const Dialogs = (props) => {
-    let el = React.createRef();
+    console.log('PR', props)
 
-    let onPostChangeDialog = function(){
-        props.props.dispatch({'type': 'UPDATE-NEW-POST-TEXT_1', 'newText': el.current.value});
+    let onPostChangeDialog = function (e) {
+        let newText = e.target.value;
+        props.props.dispatch(updateNewTextActionCreator_dialogs(newText));
     };
+    let updateNewMessageBodyCreator = function () {
+       props.props.dispatch(updateNewMessageBodyCreator_dialogs());
+    };
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -18,12 +23,13 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 <Message messageData={props.dialogData}/>
-            </div>
-            <div>
-                <textarea name="" id="" cols="30" rows="5" ref={el}  onChange={onPostChangeDialog}/>
-                <button>Add</button>
-                <br/>
-                <span>{props.props.state.profilePage.newPostTextDialog}</span>
+                <p>{props.dialogData.dialogsPage.messageDialog}</p>
+                <div>
+                    <textarea name="" id="" cols="30" rows="5" value={props.dialogData.dialogsPage.newPostTextDialog}
+                              placeholder='Enter your message'
+                              onChange={onPostChangeDialog}/><br/>
+                    <button onClick={updateNewMessageBodyCreator}>Add</button>
+                </div>
             </div>
         </div>
     )

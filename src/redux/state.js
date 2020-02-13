@@ -61,6 +61,11 @@
 //
 // export default state
 
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_POST_TEXT_DIALOGS = 'UPDATE-NEW-POST-TEXT_DIALOGS';
+const UPDATE_NEW_MESSAGE_BODY_DIALOGS = 'UPDATE_NEW_MESSAGE_BODY_DIALOGS';
+
 let store = {
         __subscriber() {
             console.log('oooo');
@@ -71,8 +76,7 @@ let store = {
                     {id: '1', message: 'Hi, how are you?', likesCount: 12},
                     {id: '2', message: "It's my first post", likesCount: 11},
                 ],
-                newPostText: '1',
-                newPostTextDialog: '',
+                newPostText: '',
             },
             dialogsPage: {
                 messageData: [
@@ -88,7 +92,9 @@ let store = {
                     {id: '3', name: 'Алексей', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRAvtQ5QGFbFY861oIhYmOCL-bPaF73hepDNPQa8FfoHoUFX7cz'},
                     {id: '4', name: 'Влада', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0Aigo8TJLP-TdZtauPgAKce6QJuaxG8EUDyarQrs-xxNer9h2'},
                     {id: '5', name: 'Виктория', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGjvKSeYKpoeC4v9d9_52ZhYlV__HtXaJQg-eU2eu9gfx_NfBD'},
-                ]
+                ],
+                newPostTextDialog: '',
+                messageDialog: [],
             },
             navbarPage: {
                 toolbarFriehds: [
@@ -122,21 +128,33 @@ let store = {
         // },
 
         dispatch(action){
-            if(action.type === 'ADD-POST'){
+            if(action.type === ADD_POST){
                 let new_Post = {
                     id: '6', message: this._state.profilePage.newPostText, likesCount: 0
                 };
                 this._state.profilePage.posts.push(new_Post);
                 this._state.profilePage.newPostText = '';
                 this.__subscriber()
-            }else if(action.type === 'UPDATE-NEW-POST-TEXT'){
+            }else if(action.type === UPDATE_NEW_POST_TEXT){
                 this._state.profilePage.newPostText = action.newText;
                 this.__subscriber()
-            }else if(action.type === 'UPDATE-NEW-POST-TEXT_1'){
-                this._state.profilePage.newPostTextDialog = action.newText;
+            }else if(action.type === UPDATE_NEW_POST_TEXT_DIALOGS){
+                this._state.dialogsPage.newPostTextDialog = action.newText;
                 this.__subscriber()
+            }else if(action.type === UPDATE_NEW_MESSAGE_BODY_DIALOGS){
+                let body_text = this._state.dialogsPage.newPostTextDialog;
+                // this._state.dialogsPage.messageDialog.push(this._state.dialogsPage.newPostTextDialog);
+                this._state.dialogsPage.newPostTextDialog = '';
+                this._state.dialogsPage.messageData.push({id: '6', message: body_text });
+                this.__subscriber();
             }
         }
 };
 
+export const addPostActionCreator = ()=>({type: ADD_POST});
+export const updateNewTextActionCreator =(text)=>({type: UPDATE_NEW_POST_TEXT, 'newText': text});
+export const updateNewTextActionCreator_dialogs = (text)=>({type: UPDATE_NEW_POST_TEXT_DIALOGS, 'newText': text});
+export const updateNewMessageBodyCreator_dialogs = ()=>({type: UPDATE_NEW_MESSAGE_BODY_DIALOGS});
+
 export default store;
+
