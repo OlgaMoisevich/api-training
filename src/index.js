@@ -5,9 +5,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 // import {addPost, updateNewPostText} from './redux/state'
-import store from './redux/state'
-
-
+import store from './redux/redux-store'
 
 // let rerenderEntireTree = () => {
 //     ReactDOM.render(<App state={state} addPost={addPost} updateNewPostText={updateNewPostText}
@@ -20,6 +18,7 @@ import store from './redux/state'
 
 
 let rerenderEntireTree = (state) => {
+    console.log('state', state)
     ReactDOM.render(<App state={store.getState()} dispatch={store.dispatch.bind(store)}
     />, document.getElementById('root'));
 };
