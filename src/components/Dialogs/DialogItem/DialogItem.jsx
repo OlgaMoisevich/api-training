@@ -3,7 +3,7 @@ import s from './DialogItem.module.css'
 import {NavLink} from "react-router-dom";
 
 const DialogItem = (props) => {
-    return props.listItem.dialogsPage.dialogs.map(item => {
+    return props.listItem.dialogs.map(item => {
         return (
             <div className={s.dialog + ' ' + s.active} key={item.id}>
                 <img className={s.ava} src={item.src} alt=""/>

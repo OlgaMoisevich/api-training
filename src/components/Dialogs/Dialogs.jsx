@@ -2,34 +2,31 @@ import React from 'react'
 import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {updateNewMessageBodyCreator_dialogs, updateNewTextActionCreator_dialogs} from "../../redux/dialogs-reducer";
-
 
 
 const Dialogs = (props) => {
-    console.log('PR', props)
 
     let onPostChangeDialog = function (e) {
         let newText = e.target.value;
-        props.props.dispatch(updateNewTextActionCreator_dialogs(newText));
+        props.postChangeDialog(newText);
     };
-    let updateNewMessageBodyCreator = function () {
-       props.props.dispatch(updateNewMessageBodyCreator_dialogs());
+    let onUpdateNewMessageBodyCreator = function () {
+        props.updateNewMessageBodyCreator();
     };
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItem listItem={props.dialogData}/>
+                <DialogItem listItem={props.dialogsData}/>
             </div>
             <div className={s.messages}>
-                <Message messageData={props.dialogData}/>
-                <p>{props.dialogData.dialogsPage.messageDialog}</p>
+                <Message messageData={props.dialogsData}/>
+                <p>{props.dialogsData.messageDialog}</p>
                 <div>
-                    <textarea name="" id="" cols="30" rows="5" value={props.dialogData.dialogsPage.newPostTextDialog}
+                    <textarea name="" id="" cols="30" rows="5" value={props.dialogsData.newPostTextDialog}
                               placeholder='Enter your message'
                               onChange={onPostChangeDialog}/><br/>
-                    <button onClick={updateNewMessageBodyCreator}>Add</button>
+                    <button onClick={onUpdateNewMessageBodyCreator}>Add</button>
                 </div>
             </div>
         </div>
