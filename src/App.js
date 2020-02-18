@@ -7,15 +7,15 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./components/Profile/Profile";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-function App(props) {
+function App() {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
-                <Navbar props={props.state.navbarPag}/>
+                <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path='/profile' render={() => <Profile postData={props} />} />
-                    <Route path='/dialogs' render={() => <DialogsContainer dialogData={props} />} />
+                    <Route path='/profile' render={() => <Profile/>} />
+                    <Route path='/dialogs' render={() => <DialogsContainer/>} />
                 </div>
             </div>
         </BrowserRouter>

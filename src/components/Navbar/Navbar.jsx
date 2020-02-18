@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import Friends from "./ToolbarFriends/Friends";
+import StoreContext from "../../StoreContext";
 
 const Navbar = (props) => {
     return (
@@ -13,7 +14,7 @@ const Navbar = (props) => {
                 <NavLink to="/dialogs" activeClassName={s.activeLink}>Message</NavLink>
             </div>
             <div className={s.item}>
-               <NavLink to="/dialogs2" activeClassName={s.activeLink}>News</NavLink>
+                <NavLink to="/dialogs2" activeClassName={s.activeLink}>News</NavLink>
             </div>
             <div className={s.item}>
                 <NavLink to="/dialogs3" activeClassName={s.activeLink}>Music</NavLink>
@@ -21,7 +22,11 @@ const Navbar = (props) => {
             <div className={s.item}>
                 <NavLink to="/dialogs4" activeClassName={s.activeLink}>Settings</NavLink>
             </div>
-            <Friends props={props.props.toolbarFriehds}/>
+            <StoreContext.Consumer>
+                {(value) => {
+                    return <Friends props={value.getState().navbarPag.toolbarFriehds}/>}
+                }
+            </StoreContext.Consumer>
         </nav>
     )
 }
