@@ -33,7 +33,7 @@ import {connect} from "react-redux";
 // };
 let mapStateToProps = (store)=>{
         return {
-            postData:store.postData,
+            postData:store.profilePage,
         }
 };
  let mapDispatchToProps = (dispatch)=>{

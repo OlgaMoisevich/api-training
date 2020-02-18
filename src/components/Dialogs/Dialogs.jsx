@@ -5,7 +5,7 @@ import DialogItem from "./DialogItem/DialogItem";
 
 
 const Dialogs = (props) => {
-
+console.log('DIALOG', props)
     let onPostChangeDialog = function (e) {
         let newText = e.target.value;
         props.postChangeDialog(newText);

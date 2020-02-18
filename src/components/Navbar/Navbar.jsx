@@ -2,7 +2,8 @@ import React from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import Friends from "./ToolbarFriends/Friends";
-import StoreContext from "../../StoreContext";
+// import StoreContext from "../../StoreContext";
+import FriendsContainer from "../../FriendsContainer";
 
 const Navbar = (props) => {
     return (
@@ -22,11 +23,12 @@ const Navbar = (props) => {
             <div className={s.item}>
                 <NavLink to="/dialogs4" activeClassName={s.activeLink}>Settings</NavLink>
             </div>
-            <StoreContext.Consumer>
-                {(value) => {
-                    return <Friends props={value.getState().navbarPag.toolbarFriehds}/>}
-                }
-            </StoreContext.Consumer>
+            {/*<StoreContext.Consumer>*/}
+            {/*    {(value) => {*/}
+            {/*        return <Friends props={value.getState().navbarPag.toolbarFriehds}/>}*/}
+            {/*    }*/}
+            {/*</StoreContext.Consumer>*/}
+            <FriendsContainer/>
         </nav>
     )
 }

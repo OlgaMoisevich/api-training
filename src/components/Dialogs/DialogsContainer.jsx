@@ -36,9 +36,9 @@ import {connect} from "react-redux";
 //     )
 // };
 
-let mapStateToProps = (state)=>{
+let mapStateToProps = (store)=>{
     return {
-        dialogsData: state.dialogsPage
+        dialogsData: store.dialogsPage
     }
 };
 let mapDispatchToProps = (dispatch)=>{

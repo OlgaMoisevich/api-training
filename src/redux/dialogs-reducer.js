@@ -24,16 +24,18 @@ export const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_NEW_POST_TEXT_DIALOGS:
             state.newPostTextDialog = action.newText;
-            return state;
+            console.log("State", state)
+            return {...state};
         case UPDATE_NEW_MESSAGE_BODY_DIALOGS:
             let body_text = state.newPostTextDialog;
             state.newPostTextDialog = '';
             state.messageData.push({id: '6', message: body_text});
-            return state;
+            return {...state};
         default:
             return state;
     }
 };
 
-export const updateNewTextActionCreator_dialogs = (text)=>({type: UPDATE_NEW_POST_TEXT_DIALOGS, 'newText': text});
 export const updateNewMessageBodyCreator_dialogs = ()=>({type: UPDATE_NEW_MESSAGE_BODY_DIALOGS});
+export const updateNewTextActionCreator_dialogs = (text)=>({type: UPDATE_NEW_POST_TEXT_DIALOGS, 'newText': text});
+

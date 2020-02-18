@@ -4,6 +4,7 @@ import Post from './Post/Post'
 
 
 const MyPosts = (props) => {
+    console.log('PROPS__', props)
     let post = props.postData.posts.map(post => <Post message={post.message} likesCount={post.likesCount} key={post.id}/>);
 
     let onAddPost = () => {
