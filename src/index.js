@@ -6,7 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 // import {addPost, updateNewPostText} from './redux/state'
 import store from './redux/redux-store'
-import StoreContext from "./StoreContext";
+import {Provider} from "./StoreContext";
 
 // let rerenderEntireTree = () => {
 //     ReactDOM.render(<App state={state} addPost={addPost} updateNewPostText={updateNewPostText}
@@ -20,17 +20,16 @@ import StoreContext from "./StoreContext";
 
 let rerenderEntireTree = () => {
     ReactDOM.render(
-        <StoreContext.Provider value={store}>
+        <Provider store={store}>
             <App/>
-        </StoreContext.Provider>,
+        </Provider>,
         document.getElementById('root')
     );
 };
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree();
 store.subscribe(()=>{
-    let state = store.getState();
-        rerenderEntireTree(state)
+        rerenderEntireTree()
 });
 
 serviceWorker.unregister();
