@@ -6,7 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 // import {addPost, updateNewPostText} from './redux/state'
 import store from './redux/redux-store'
-import {Provider} from "./StoreContext";
+import Provider from "react-redux/es/components/Provider";
 
 // let rerenderEntireTree = () => {
 //     ReactDOM.render(<App state={state} addPost={addPost} updateNewPostText={updateNewPostText}
