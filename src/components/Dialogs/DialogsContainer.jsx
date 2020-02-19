@@ -42,11 +42,12 @@ let mapStateToProps = (store)=>{
 };
 let mapDispatchToProps = (dispatch)=>{
     return{
-        postChangeDialog: ()=>{
-            dispatch(updateNewTextActionCreator_dialogs())
+        postChangeDialog: (newText)=>{
+            dispatch(updateNewTextActionCreator_dialogs(newText))
         },
-        updateNewMessageBodyCreator: (newText)=>{
-            dispatch( updateNewMessageBodyCreator_dialogs(newText))
+        updateNewMessageBodyCreator: ()=>{
+
+            dispatch( updateNewMessageBodyCreator_dialogs())
         }
     }
 };

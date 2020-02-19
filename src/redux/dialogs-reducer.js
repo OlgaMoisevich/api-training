@@ -10,11 +10,31 @@ let initialState = {
         {id: '5', message: 'Hello'},
     ],
     dialogs: [
-        {id: '1', name: 'Василий', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGMHyaJaJdu1Q6PesEEPHGdKAPaGoaCZqe_pkn4XJZLWudStnN'},
-        {id: '2', name: 'Генадий', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxJbBQ_JvY_hXs4if2HmoIcRAdofDdiEOjY82yfoNlo4HkBnO1'},
-        {id: '3', name: 'Алексей', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRAvtQ5QGFbFY861oIhYmOCL-bPaF73hepDNPQa8FfoHoUFX7cz'},
-        {id: '4', name: 'Влада', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0Aigo8TJLP-TdZtauPgAKce6QJuaxG8EUDyarQrs-xxNer9h2'},
-        {id: '5', name: 'Виктория', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGjvKSeYKpoeC4v9d9_52ZhYlV__HtXaJQg-eU2eu9gfx_NfBD'},
+        {
+            id: '1',
+            name: 'Василий',
+            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGMHyaJaJdu1Q6PesEEPHGdKAPaGoaCZqe_pkn4XJZLWudStnN'
+        },
+        {
+            id: '2',
+            name: 'Генадий',
+            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxJbBQ_JvY_hXs4if2HmoIcRAdofDdiEOjY82yfoNlo4HkBnO1'
+        },
+        {
+            id: '3',
+            name: 'Алексей',
+            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRAvtQ5QGFbFY861oIhYmOCL-bPaF73hepDNPQa8FfoHoUFX7cz'
+        },
+        {
+            id: '4',
+            name: 'Влада',
+            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0Aigo8TJLP-TdZtauPgAKce6QJuaxG8EUDyarQrs-xxNer9h2'
+        },
+        {
+            id: '5',
+            name: 'Виктория',
+            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGjvKSeYKpoeC4v9d9_52ZhYlV__HtXaJQg-eU2eu9gfx_NfBD'
+        },
     ],
     newPostTextDialog: '',
     messageDialog: [],
@@ -22,26 +42,23 @@ let initialState = {
 
 export const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_POST_TEXT_DIALOGS:{
-            let stateCopy = {...state};
-            stateCopy.newPostTextDialog = action.newText;
-            return stateCopy;
-        }
-        case UPDATE_NEW_MESSAGE_BODY_DIALOGS:{
-            let stateCopy = {...state};
-            stateCopy.messageData = [...state.messageData];
-            let body_text = stateCopy.newPostTextDialog;
-            stateCopy.newPostTextDialog = '';
-            stateCopy.messageData.push({id: '6', message: body_text});
-            return stateCopy;
-        }
+        case UPDATE_NEW_POST_TEXT_DIALOGS:
+            return {
+                ...state,
+                newPostTextDialog: action.newText
+            };
+        case UPDATE_NEW_MESSAGE_BODY_DIALOGS:
+            return {
+                ...state,
+                messageData: [...state.messageData, {id: '6', message: state.newPostTextDialog}],
+                newPostTextDialog: '',
+            };
         default:
             return state;
     }
 };
 
 
-
-export const updateNewMessageBodyCreator_dialogs = ()=>({type: UPDATE_NEW_MESSAGE_BODY_DIALOGS});
-export const updateNewTextActionCreator_dialogs = (text)=>({type: UPDATE_NEW_POST_TEXT_DIALOGS, 'newText': text});
+export const updateNewMessageBodyCreator_dialogs = () => ({type: UPDATE_NEW_MESSAGE_BODY_DIALOGS});
+export const updateNewTextActionCreator_dialogs = (text) => ({type: UPDATE_NEW_POST_TEXT_DIALOGS, 'newText': text});
 
