@@ -1,5 +1,4 @@
 import React from 'react'
-// import s from './Dialogs.module.css'
 import {updateNewMessageBodyCreator_dialogs, updateNewTextActionCreator_dialogs} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
@@ -43,8 +42,8 @@ let mapStateToProps = (store)=>{
 };
 let mapDispatchToProps = (dispatch)=>{
     return{
-        postChangeDialog: (newText)=>{
-            dispatch(updateNewTextActionCreator_dialogs(newText))
+        postChangeDialog: ()=>{
+            dispatch(updateNewTextActionCreator_dialogs())
         },
         updateNewMessageBodyCreator: (newText)=>{
             dispatch( updateNewMessageBodyCreator_dialogs(newText))

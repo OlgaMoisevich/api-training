@@ -38,8 +38,8 @@ let mapStateToProps = (store)=>{
 };
  let mapDispatchToProps = (dispatch)=>{
      return{
-         addPost: (newText)=>{
-             dispatch(addPostActionCreator(newText));
+         addPost: ()=>{
+             dispatch(addPostActionCreator());
          },
          updateNewPostText: (newText)=>{
              dispatch(updateNewTextActionCreator(newText))

@@ -22,19 +22,25 @@ let initialState = {
 
 export const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_POST_TEXT_DIALOGS:
-            state.newPostTextDialog = action.newText;
-            console.log("State", state)
-            return {...state};
-        case UPDATE_NEW_MESSAGE_BODY_DIALOGS:
-            let body_text = state.newPostTextDialog;
-            state.newPostTextDialog = '';
-            state.messageData.push({id: '6', message: body_text});
-            return {...state};
+        case UPDATE_NEW_POST_TEXT_DIALOGS:{
+            let stateCopy = {...state};
+            stateCopy.newPostTextDialog = action.newText;
+            return stateCopy;
+        }
+        case UPDATE_NEW_MESSAGE_BODY_DIALOGS:{
+            let stateCopy = {...state};
+            stateCopy.messageData = [...state.messageData];
+            let body_text = stateCopy.newPostTextDialog;
+            stateCopy.newPostTextDialog = '';
+            stateCopy.messageData.push({id: '6', message: body_text});
+            return stateCopy;
+        }
         default:
             return state;
     }
 };
+
+
 
 export const updateNewMessageBodyCreator_dialogs = ()=>({type: UPDATE_NEW_MESSAGE_BODY_DIALOGS});
 export const updateNewTextActionCreator_dialogs = (text)=>({type: UPDATE_NEW_POST_TEXT_DIALOGS, 'newText': text});

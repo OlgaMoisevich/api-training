@@ -23,7 +23,7 @@ console.log('DIALOG', props)
                 <Message messageData={props.dialogsData}/>
                 <p>{props.dialogsData.messageDialog}</p>
                 <div>
-                    <textarea name="" id="" cols="30" rows="5" value={props.dialogsData.newPostTextDialog}
+                    <textarea name="" id="" cols="30" rows="5" value={console.log('!!!!', props.dialogsData.newPostTextDialog)}
                               placeholder='Enter your message'
                               onChange={onPostChangeDialog}/><br/>
                     <button onClick={onUpdateNewMessageBodyCreator}>Add</button>

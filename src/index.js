@@ -6,7 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 // import {addPost, updateNewPostText} from './redux/state'
 import store from './redux/redux-store'
-import Provider from "react-redux/es/components/Provider";
+import {Provider} from "react-redux";
 
 // let rerenderEntireTree = () => {
 //     ReactDOM.render(<App state={state} addPost={addPost} updateNewPostText={updateNewPostText}
@@ -18,18 +18,11 @@ import Provider from "react-redux/es/components/Provider";
 // subscribe(rerenderEntireTree);
 
 
-let rerenderEntireTree = () => {
-    ReactDOM.render(
-        <Provider store={store}>
-            <App/>
-        </Provider>,
-        document.getElementById('root')
-    );
-};
-
-rerenderEntireTree();
-store.subscribe(()=>{
-        rerenderEntireTree()
-});
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('root')
+);
 
 serviceWorker.unregister();
