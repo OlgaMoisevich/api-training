@@ -1,0 +1,11 @@
+button{
+    width: 150px;
+    height: 46px;
+    background: #ACA3BF;
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+.wrapper{
+    text-align: center;
+}
