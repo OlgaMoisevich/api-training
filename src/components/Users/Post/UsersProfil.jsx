@@ -14,8 +14,8 @@ const UserProfile = (props)=>{
                 <div className={s.wrapper_block_about}>
                     <h1 className={s.full_name}>{item.fullName}</h1>
                     <div className={s.location}>
-                        <p>{item.location['city']}</p>
                         <p>{item.location['country']}</p>
+                        <p>{item.location['city']}</p>
                     </div>
                     <p className={s.status}>{item.status}</p>
                 </div>
