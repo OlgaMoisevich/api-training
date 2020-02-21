@@ -6,7 +6,6 @@
     width: 60px;
     height: 60px;
     margin-top: 20px;
-    margin-left: 20px;
 }
 .full_name{
     font-size: 16px;
@@ -36,4 +35,16 @@
     bottom: -11px;
     left: 0px;
     color: gray;
+}
+button.follow{
+    width: 100px;
+    height: 25px;
+    font-size: 16px;
+    margin-left: 16px;
+    outline: none;
+    transition: all 0.3s ease-in;
+}
+button.follow:hover{
+    background-color: #C391C0;
+    color: #fff;
 }
