@@ -70,7 +70,7 @@ export const usersReducer = (state = initialState, action) => {
     }
 };
 
-export const followAC = (userId) => ({type: FOLLOW, 'id': userId});
-export const unfollowAC = (userId) => ({type: UNFOLLOW, 'id': userId});
+export const followAC = (userId) => ({type: FOLLOW, 'id': Number(userId)});
+export const unfollowAC = (userId) => ({type: UNFOLLOW, 'id': Number(userId)});
 export const setUsersAC = (users)=>({type: SET_USERS, 'users': users});
 
