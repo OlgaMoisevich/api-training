@@ -4,6 +4,7 @@ const  SET_USERS = 'SET_USERS';
 
 let initialState = {
     users: [
+        //статические данные
         // {
         //     id: '1',
         //     photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQG-8YvBQ8-fLzhFkEBkryb4BzeHmhtdabVl1FpwzxwV0MfDhTi',
