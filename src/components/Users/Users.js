@@ -13,16 +13,30 @@ class Users extends React.Component {
                                                          setUnFollow={this.props.setUnFollow}/>);
     };
 
-    componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+    // componentDidMount() {
+    //     axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+    //         this.props.setUsers(response.data.items)
+    //     });
+    // }
+
+    setCurrentPage() {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users?page=1&count=5").then(response => {
+            console.log('RESPONSE',response)
+
             this.props.setUsers(response.data.items)
         });
     }
 
     render() {
-        console.log('this', this)
+        console.log('this', this);
         return (
             <div className={s.wrapper}>
+
+                <div className={s.page}>
+                    <span className={s.selectedPage} onClick={this.setCurrentPage()}>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                </div>
                 {this.user()}
                 <button className={s.button}>Show more</button>
             </div>
@@ -32,6 +46,7 @@ class Users extends React.Component {
 };
 
 export default Users;
+
 
 
 

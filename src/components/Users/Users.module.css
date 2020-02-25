@@ -9,3 +9,9 @@ button{
 .wrapper{
     text-align: center;
 }
+.selectedPage{
+    font-weight: bold;
+}
+.page span{
+    padding: 0 7px;
+}

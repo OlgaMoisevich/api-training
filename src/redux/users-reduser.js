@@ -1,6 +1,8 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
-const  SET_USERS = 'SET_USERS';
+const SET_USERS = 'SET_USERS';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+
 
 let initialState = {
     users: [
@@ -38,6 +40,7 @@ let initialState = {
         //     location: {city: 'Minsk', country: 'Belarus,'}
         // },
     ],
+    totalUsersCount: null,
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -67,6 +70,10 @@ export const usersReducer = (state = initialState, action) => {
               ...state, users: [...action.users]
               // ...state, users: [...state.users, ...action.users]
             };
+        case SET_TOTAL_USERS_COUNT:
+        return {
+          ...state, totalUsersCount: [...action.totalCount]
+        };
         default:
             return state;
     }
@@ -75,4 +82,5 @@ export const usersReducer = (state = initialState, action) => {
 export const followAC = (userId) => ({type: FOLLOW, 'id': Number(userId)});
 export const unfollowAC = (userId) => ({type: UNFOLLOW, 'id': Number(userId)});
 export const setUsersAC = (users)=>({type: SET_USERS, 'users': users});
+export const setTotalUsersCountAC = (totalCount)=>({type: SET_TOTAL_USERS_COUNT, 'totalCount': totalCount});
 

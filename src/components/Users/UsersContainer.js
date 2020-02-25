@@ -21,6 +21,9 @@ let mapDispatchToProps =(dispatch)=>{
         },
         setUsers:(users)=>{
             dispatch(setUsersAC(users))
+        },
+        setTotalUsersCount:()=>{
+            dispatch(setTotalUsersCountAC(totalCount))
         }
     }
 };
