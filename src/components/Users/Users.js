@@ -21,14 +21,18 @@ class Users extends React.Component {
 
     setCurrentPage() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users?page=1&count=5").then(response => {
-            console.log('RESPONSE',response)
+            console.log('RESPONSE',response.data.totalCount)
 
             this.props.setUsers(response.data.items)
+            if(!this.props.tototalUsersCount){
+                this.props.setTotalUsersCount(response.data.totalCount);
+            }
         });
     }
 
     render() {
         console.log('this', this);
+        let pagin =
         return (
             <div className={s.wrapper}>
 
