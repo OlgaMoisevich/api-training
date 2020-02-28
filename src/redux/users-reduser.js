@@ -40,7 +40,8 @@ let initialState = {
         //     location: {city: 'Minsk', country: 'Belarus,'}
         // },
     ],
-    totalUsersCount: null,
+    totalUsersCount: 20,
+    pageSize: 50,
 };
 
 export const usersReducer = (state = initialState, action) => {

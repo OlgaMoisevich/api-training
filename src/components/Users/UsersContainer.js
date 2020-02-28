@@ -9,6 +9,7 @@ let mapStateToProps = (store)=>{
     return {
         users: store.usersPage.users,
         tototalUsersCount: store.usersPage.tototalUsersCount,
+        pageSize: store.usersPage.pageSize,
     }
 };
 

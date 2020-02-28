@@ -19,11 +19,11 @@ class Users extends React.Component {
     //     });
     // }
 
-    setCurrentPage() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users?page=1&count=5").then(response => {
-            console.log('RESPONSE',response.data.totalCount)
+    setCurrentPage(page_item) {
+        axios.get(  `https://social-network.samuraijs.com/api/1.0/users?${page_item}`).then(response => {
+            console.log('RESPONSE',response.data.totalCount);
 
-            this.props.setUsers(response.data.items)
+            this.props.setUsers(response.data.items);
             if(!this.props.tototalUsersCount){
                 this.props.setTotalUsersCount(response.data.totalCount);
             }
@@ -31,15 +31,21 @@ class Users extends React.Component {
     }
 
     render() {
-        console.log('this', this);
-        let pagin =
+        // console.log('this', this);
+        let paginCount = this.props.totalUsersCount / this.props.pageSize;
+        let page = [];
+        for (let i = 0; i <= paginCount; i++) {
+            page.push(i);
+        }
+        let span_el = page.map(page_item => {
+            return <span key={page_item} className={s.selectedPage} onClick={this.setCurrentPage(page_item)}>{page_item}</span>
+        });
+
         return (
             <div className={s.wrapper}>
 
                 <div className={s.page}>
-                    <span className={s.selectedPage} onClick={this.setCurrentPage()}>1</span>
-                    <span>2</span>
-                    <span>3</span>
+                    {span_el}
                 </div>
                 {this.user()}
                 <button className={s.button}>Show more</button>
