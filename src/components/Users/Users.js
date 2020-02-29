@@ -4,48 +4,52 @@ import s from './Users.module.css'
 import * as axios from 'axios'
 
 class Users extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
 
     user() {
         return this.props.users.map(post => <UserProfile key={post.id} props={post} setFollow={this.props.setFollow}
                                                          setUnFollow={this.props.setUnFollow}/>);
     };
 
-    // componentDidMount() {
-    //     axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-    //         this.props.setUsers(response.data.items)
-    //     });
-    // }
-
-    setCurrentPage(page_item) {
-        axios.get(  `https://social-network.samuraijs.com/api/1.0/users?${page_item}`).then(response => {
-            console.log('RESPONSE',response.data.totalCount);
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
 
             this.props.setUsers(response.data.items);
-            if(!this.props.tototalUsersCount){
+            if (!this.props.totalUsersCount) {
                 this.props.setTotalUsersCount(response.data.totalCount);
             }
         });
     }
 
+    onPageChanged = (pageNumber) => {
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
+
+            this.props.setUsers(response.data.items);
+            if (!this.props.totalUsersCount) {
+                this.props.setTotalUsersCount(response.data.totalCount);
+            }
+        });
+    };
+
     render() {
-        // console.log('this', this);
+        console.log('this', this);
         let paginCount = this.props.totalUsersCount / this.props.pageSize;
         let page = [];
-        for (let i = 0; i <= paginCount; i++) {
+        for (let i = 1; i <= paginCount; i++) {
             page.push(i);
         }
-        let span_el = page.map(page_item => {
-            return <span key={page_item} className={s.selectedPage} onClick={this.setCurrentPage(page_item)}>{page_item}</span>
-        });
+        console.log('this2', this);
 
         return (
             <div className={s.wrapper}>
-
                 <div className={s.page}>
-                    {span_el}
+                    {page.map(page_item => {
+                        return <span key={page_item}
+                                     className={this.props.currentPage === page_item && s.selectedPage}
+                                     onClick={(e) => {
+                                         this.onPageChanged(page_item)
+                                     }}>{page_item}</span>
+                    })}
                 </div>
                 {this.user()}
                 <button className={s.button}>Show more</button>
