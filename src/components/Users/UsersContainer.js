@@ -11,7 +11,7 @@ import {
 } from "../../redux/users-reduser";
 import * as axios from "axios";
 import UsersUI from "./UsersUI";
-import preloader from './../../assets/Spinner.svg'
+import Preloader from "../common/Preloader";
 
 
 class UsersContainerComponent extends React.Component {
@@ -41,7 +41,7 @@ class UsersContainerComponent extends React.Component {
 
     render() {
         return <>
-            {this.props.isFetching ? <img src={preloader} alt=""/> : null}
+                 {this.props.isFetching ? <Preloader/> : null}
                 <UsersUI currentPage = {this.props.currentPage}
                          totalUsersCount = {this.props.totalUsersCount}
                          pageSize = {this.props.pageSize}
