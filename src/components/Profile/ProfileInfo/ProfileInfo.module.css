@@ -1,8 +1,36 @@
 .descriptionBlock {
     padding: 20px;
+    display: flex;
+
 }
 
 .profileImg {
     width: 100%;
     height: 150px;
+}
+
+.descriptionBlock img{
+    max-width: 100px;
+    border-radius: 50%;
+}
+
+.descriptionBlock>div{
+    margin-right: 15px;
+}
+.lookingForAJob{
+    color: #c34753;
+}
+.fullName{
+    margin-top: 15px;
+    margin-bottom: 2px;
+}
+.aboutMe{
+    color: #979797;
+    margin-top: 0px;
+    font-size: 12px;
+}
+.contacts span{
+    padding: 0px 10px;
+    color: #1f1f1f;
+    font-size: 13px;
 }

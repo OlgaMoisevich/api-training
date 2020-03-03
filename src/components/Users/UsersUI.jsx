@@ -19,9 +19,8 @@ const UsersUI = (props)=>{
                 {page.map(page_item => {
                     return <span key={page_item}
                                  className={props.currentPage === page_item && s.selectedPage}
-                                 onClick={(e) => {
-                                     props.onPageChanged(page_item)
-                                 }}>{page_item}</span>
+                                 onClick={(e) => { props.onPageChanged(page_item)}}
+                    >{page_item}</span>
                 })}
             </div>
             {user}

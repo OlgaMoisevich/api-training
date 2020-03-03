@@ -6,4 +6,17 @@
 }
 .postsBlock{
     padding: 20px;
+    position: relative;
+}
+.my_post{
+    margin-left: 20px;
+    margin-bottom: 0;
+}
+.button_add{
+    margin-top: 15px;
+    max-width: 130px;
+    max-height: 37px;
+}
+.post{
+    margin-left: 15px;
 }
