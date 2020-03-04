@@ -4,7 +4,7 @@ import UserProfile from "./Post/UsersProfil";
 
 const UsersUI = (props)=>{
 
-   let user = props.users.map(post => <UserProfile key={post.id} props={post} setFollow={props.setFollow}
+   let users = props.users.map(post => <UserProfile key={post.id} props={post} setFollow={props.setFollow}
                                                          setUnFollow={props.setUnFollow}/>);
 
     let paginCount = props.totalUsersCount / props.pageSize;
@@ -23,7 +23,7 @@ const UsersUI = (props)=>{
                     >{page_item}</span>
                 })}
             </div>
-            {user}
+            {users}
             <button className={s.button}>Show more</button>
         </div>
     )
