@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_IS_FETCHING = 'SET_IS_FETCHING';
+const SET_DEFAULT_BUTTON = 'SET_DEFAULT_BUTTON';
 
 
 let initialState = {
@@ -46,6 +47,7 @@ let initialState = {
     pageSize: 5,
     currentPage:1,
     isFetching: false,
+    defaultButton: false,
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -87,6 +89,10 @@ export const usersReducer = (state = initialState, action) => {
         return {
             ...state, isFetching: action.isFetch,
         };
+        case SET_DEFAULT_BUTTON:
+        return {
+            ...state, defaultButton: action.bool,
+        };
         default:
             return state;
     }
@@ -98,5 +104,6 @@ export const setUsers = (users)=>({type: SET_USERS, 'users': users});
 export const setTotalUsersCount = (totalCount)=>({type: SET_TOTAL_USERS_COUNT, 'totalCount': totalCount});
 export const setCurrentPage = (page)=>({type: SET_CURRENT_PAGE, 'currentPage': page});
 export const setIsFetching =(isFetch)=>({type: SET_IS_FETCHING, 'isFetch': isFetch});
+export const setDefaultButton =(bool)=>({type: SET_DEFAULT_BUTTON, 'bool': bool});
 
 

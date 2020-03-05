@@ -1,23 +1,21 @@
 import React from 'react'
 import {connect} from "react-redux";
 import {
-    setCurrentPage,
+    setCurrentPage, setDefaultButton,
     setFollow, setIsFetching,
     setTotalUsersCount,
     setUnFollow, setUsers,
-    } from "../../redux/users-reduser";
-import * as axios from "axios";
+} from "../../redux/users-reduser";
 import UsersUI from "./UsersUI";
 import Preloader from "../common/Preloader";
+import Api from "../../api/api";
 
 // Все пользователи
 class UsersContainerComponent extends React.Component {
 
     componentDidMount() {
         this.props.setIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true,
-        }).then(response => {
+        Api.get_all_users(this.props.currentPage, this.props.pageSize).then(response => {
             this.props.setIsFetching(false);
             this.props.setUsers(response.data.items);
             if (!this.props.totalUsersCount) {
@@ -29,9 +27,7 @@ class UsersContainerComponent extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.setIsFetching(true);
         this.props.setCurrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-            withCredentials: true,
-        }).then(response => {
+        Api.get_on_page_changed(pageNumber, this.props.pageSize ).then(response => {
             this.props.setIsFetching(false);
             this.props.setUsers(response.data.items);
             if (!this.props.totalUsersCount) {
@@ -50,6 +46,8 @@ class UsersContainerComponent extends React.Component {
                          setFollow = {this.props.setFollow}
                          setUnFollow = {this.props.setUnFollow}
                          onPageChanged = {this.onPageChanged}
+                         defaultButton = {this.props.defaultButton}
+                         setDefaultButton = {this.props.setDefaultButton}
                 />
             </>
     }
@@ -62,6 +60,7 @@ let mapStateToProps = (store)=>{
         pageSize: store.usersPage.pageSize,
         currentPage: store.usersPage.currentPage,
         isFetching: store.usersPage.isFetching,
+        defaultButton: store.usersPage.defaultButton
     }
 };
     //1сп
@@ -105,6 +104,7 @@ const UsersContainer = connect(mapStateToProps, {
     setTotalUsersCount,
     setCurrentPage,
     setIsFetching,
+    setDefaultButton,
 })(UsersContainerComponent);
 
 export default UsersContainer

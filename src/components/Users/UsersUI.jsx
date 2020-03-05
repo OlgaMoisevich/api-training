@@ -1,11 +1,15 @@
 import s from "./Users.module.css";
 import React from "react";
 import UserProfile from "./Post/UsersProfil";
+import {setDefaultButton} from "../../redux/users-reduser";
 
 const UsersUI = (props)=>{
-
-   let users = props.users.map(post => <UserProfile key={post.id} props={post} setFollow={props.setFollow}
-                                                         setUnFollow={props.setUnFollow}/>);
+   let users = props.users.map(post => <UserProfile key={post.id} props={post}
+                                                    setFollow={props.setFollow}
+                                                    defaultButton={props.defaultButton}
+                                                    setUnFollow={props.setUnFollow}
+                                                    setDefaultButton={props.setDefaultButton}
+                                                    />);
 
     let paginCount = props.totalUsersCount / props.pageSize;
     let page = [];

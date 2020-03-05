@@ -2,10 +2,10 @@ import React from 'react'
 import s from './UsersProfil.module.css'
 import userPhoto from  '../../../assets/images.jpeg'
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
+import Api from "../../../api/api";
+import {setDefaultButton} from "../../../redux/users-reduser";
 
 const UserProfile = (props) => {
-
     let item = props.props;
     let onSetUnFollow = (event) => {
         let id = event.target.dataset.id;
@@ -18,29 +18,38 @@ const UserProfile = (props) => {
 
 
     let button = item.followed ?
-        <button data-id={item.id} className={s.follow} onClick={(event) => {
+        <button data-id={item.id} className={s.follow}  disabled={props.defaultButton} onClick={(event) => {
+            console.log('props999', props);
+            props.setDefaultButton(true);
             event.persist();
-            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, {
-                withCredentials: true,
-                headers: {'API-KEY':'8635547c-5fc1-4f81-b1fd-19584dd1e0c4'},
-            }).then(response => {
+            Api.set_unfollow(item.id).then(response => {
+                console.log('response', response);
                 if (response.data.resultCode === 0) {
-                   onSetUnFollow(event)
+                   onSetUnFollow(event);
                 }
-            });
+            }).catch(response => response);
+            setTimeout(()=>{
+                console.log('1', props);
+                 props.setDefaultButton(false);
+                console.log('2', props);
+            }, 15000)
             }}>Follow</button> :
         <button data-id={item.id} className={s.follow} onClick={(event) => {
+            console.log('props2222', props)
+            props.setDefaultButton(true);
             event.persist();
-            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, {} , {
-                withCredentials: true,
-                headers: {'API-KEY':'8635547c-5fc1-4f81-b1fd-19584dd1e0c4'},
-            }).then( response => {
+            Api.set_follow(item.id).then( response => {
+                console.log('response', response);
                 if(response.data.resultCode === 0){
-                   onSetFollow(event)
+                   onSetFollow(event);
+                    props.setDefaultButton(false);
                 }
             });
-          }
-        }>UnFollow</button>;
+            setTimeout(()=>{
+                console.log('1', props);
+                props.setDefaultButton(false);
+                console.log('2', props)}, 15000)
+          }}>UnFollow</button>;
 
 
 

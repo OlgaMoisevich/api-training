@@ -9,6 +9,7 @@ let initialState = {
     ],
     newPostText: '',
     profile: null,
+
 };
 
 export const profilesReducer = (state = initialState, action) => {
