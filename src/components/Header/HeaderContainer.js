@@ -8,6 +8,7 @@ class HeaderContainer extends React.Component {
 
     componentDidMount() {
         Api.set_auth_data().then(response=>{
+            console.log('RESP_AUTH', response);
             this.props.setAuthData(response.data.data)
             }
         )

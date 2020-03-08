@@ -18,37 +18,30 @@ const UserProfile = (props) => {
 
 
     let button = item.followed ?
-        <button data-id={item.id} className={s.follow}  disabled={props.defaultButton} onClick={(event) => {
-            console.log('props999', props);
-            props.setDefaultButton(true);
+        <button data-id={item.id} className={s.follow}  disabled={props.defaultButton.some(id=> id === item.id)} onClick={(event) => {
+            props.setDefaultButton(true, item.id);
             event.persist();
             Api.set_unfollow(item.id).then(response => {
-                console.log('response', response);
                 if (response.data.resultCode === 0) {
                    onSetUnFollow(event);
                 }
             }).catch(response => response);
             setTimeout(()=>{
-                console.log('1', props);
-                 props.setDefaultButton(false);
-                console.log('2', props);
+                 props.setDefaultButton(false, item.id);
             }, 15000)
             }}>Follow</button> :
-        <button data-id={item.id} className={s.follow} onClick={(event) => {
-            console.log('props2222', props)
-            props.setDefaultButton(true);
+        <button data-id={item.id} className={s.follow} disabled={props.defaultButton.some(id=> id === item.id)} onClick={(event) => {
+            props.setDefaultButton(true, item.id);
             event.persist();
             Api.set_follow(item.id).then( response => {
-                console.log('response', response);
                 if(response.data.resultCode === 0){
                    onSetFollow(event);
-                    props.setDefaultButton(false);
+                   props.setDefaultButton(false, item.id);
                 }
             });
             setTimeout(()=>{
-                console.log('1', props);
-                props.setDefaultButton(false);
-                console.log('2', props)}, 15000)
+                props.setDefaultButton(false, item.id);
+                }, 15000)
           }}>UnFollow</button>;
 
 

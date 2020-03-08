@@ -47,7 +47,7 @@ let initialState = {
     pageSize: 5,
     currentPage:1,
     isFetching: false,
-    defaultButton: false,
+    defaultButton: [],
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -90,8 +90,10 @@ export const usersReducer = (state = initialState, action) => {
             ...state, isFetching: action.isFetch,
         };
         case SET_DEFAULT_BUTTON:
+            // debugger
         return {
-            ...state, defaultButton: action.bool,
+            ...state, defaultButton: action.bool?
+            [...state.defaultButton, action.userId]: state.defaultButton.filter(item=>item !== action.userId),
         };
         default:
             return state;
@@ -104,6 +106,6 @@ export const setUsers = (users)=>({type: SET_USERS, 'users': users});
 export const setTotalUsersCount = (totalCount)=>({type: SET_TOTAL_USERS_COUNT, 'totalCount': totalCount});
 export const setCurrentPage = (page)=>({type: SET_CURRENT_PAGE, 'currentPage': page});
 export const setIsFetching =(isFetch)=>({type: SET_IS_FETCHING, 'isFetch': isFetch});
-export const setDefaultButton =(bool)=>({type: SET_DEFAULT_BUTTON, 'bool': bool});
+export const setDefaultButton =(bool, userId)=>({type: SET_DEFAULT_BUTTON, 'bool': bool, 'userId': userId});
 
 
