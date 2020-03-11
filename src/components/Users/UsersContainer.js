@@ -1,39 +1,22 @@
 import React from 'react'
 import {connect} from "react-redux";
 import {
-    setCurrentPage, setDefaultButton,
-    setFollow, setIsFetching,
-    setTotalUsersCount,
-    setUnFollow, setUsers,
+    setDefaultButton, setFollow, setUnFollow,
+    getUsersThunkCreator, getOnPageChangeThunkCreator, followThunkCreator, unfollowThunkCreator,
 } from "../../redux/users-reduser";
 import UsersUI from "./UsersUI";
 import Preloader from "../common/Preloader";
-import Api from "../../api/api";
+
 
 // Все пользователи
 class UsersContainerComponent extends React.Component {
 
     componentDidMount() {
-        this.props.setIsFetching(true);
-        Api.get_all_users(this.props.currentPage, this.props.pageSize).then(response => {
-            this.props.setIsFetching(false);
-            this.props.setUsers(response.data.items);
-            if (!this.props.totalUsersCount) {
-                this.props.setTotalUsersCount(response.data.totalCount);
-            }
-        });
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize, this.props.totalUsersCount);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setIsFetching(true);
-        this.props.setCurrentPage(pageNumber);
-        Api.get_on_page_changed(pageNumber, this.props.pageSize ).then(response => {
-            this.props.setIsFetching(false);
-            this.props.setUsers(response.data.items);
-            if (!this.props.totalUsersCount) {
-                this.props.setTotalUsersCount(response.data.totalCount);
-            }
-        });
+        this.props.getOnPageChangeThunkCreator(pageNumber, this.props.pageSize, this.props.totalUsersCount);
     };
 
     render() {
@@ -48,6 +31,8 @@ class UsersContainerComponent extends React.Component {
                          onPageChanged = {this.onPageChanged}
                          defaultButton = {this.props.defaultButton}
                          setDefaultButton = {this.props.setDefaultButton}
+                         followThunkCreator = {this.props.followThunkCreator}
+                         unfollowThunkCreator = {this.props.unfollowThunkCreator}
                 />
             </>
     }
@@ -60,7 +45,7 @@ let mapStateToProps = (store)=>{
         pageSize: store.usersPage.pageSize,
         currentPage: store.usersPage.currentPage,
         isFetching: store.usersPage.isFetching,
-        defaultButton: store.usersPage.defaultButton
+        defaultButton: store.usersPage.defaultButton,
     }
 };
     //1сп
@@ -100,11 +85,11 @@ const UsersContainer = connect(mapStateToProps, {
     //3сп краткая запись
     setFollow,
     setUnFollow,
-    setUsers,
-    setTotalUsersCount,
-    setCurrentPage,
-    setIsFetching,
     setDefaultButton,
+    getUsersThunkCreator,
+    getOnPageChangeThunkCreator,
+    followThunkCreator,
+    unfollowThunkCreator
 })(UsersContainerComponent);
 
 export default UsersContainer

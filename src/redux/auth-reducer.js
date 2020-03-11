@@ -1,3 +1,6 @@
+import Api from "../api/api";
+import {unfollowThunkCreator} from "./users-reduser";
+
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
 
 let initialState = {
@@ -21,3 +24,10 @@ export const authReducer = (state = initialState, action) => {
 
 export const setAuthData = (data) => ({type: SET_AUTH_DATA, data: data});
 
+export const setAuthDataThunkCreator = ()=>{
+    return (dispatch)=>{
+        Api.set_auth_data().then(response=>{
+            dispatch(setAuthData(response.data.data))
+        })
+    }
+};

@@ -1,3 +1,5 @@
+import Api from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -108,4 +110,61 @@ export const setCurrentPage = (page)=>({type: SET_CURRENT_PAGE, 'currentPage': p
 export const setIsFetching =(isFetch)=>({type: SET_IS_FETCHING, 'isFetch': isFetch});
 export const setDefaultButton =(bool, userId)=>({type: SET_DEFAULT_BUTTON, 'bool': bool, 'userId': userId});
 
+
+export const getUsersThunkCreator = (currentPage, pageSize, totalUsersCount) => {
+    return (dispatch) => {
+        dispatch(setIsFetching(true));
+        Api.get_all_users(currentPage, pageSize).then(response => {
+            dispatch(setIsFetching(false));
+            dispatch(setUsers(response.data.items));
+            if (!totalUsersCount) {
+                dispatch(setTotalUsersCount(response.data.totalCount));
+            }
+        });
+    }
+};
+
+export const getOnPageChangeThunkCreator = (pageNumber, pageSize, totalUsersCount) => {
+    return (dispatch) => {
+        dispatch(setIsFetching(true));
+        dispatch(setCurrentPage(pageNumber));
+        Api.get_on_page_changed(pageNumber, pageSize).then(response => {
+            dispatch(setIsFetching(false));
+            dispatch(setUsers(response.data.items));
+            if (!totalUsersCount) {
+                dispatch(setTotalUsersCount(response.data.totalCount));
+            }
+        });
+    }
+};
+
+export const followThunkCreator = (event, itemId) => {
+    return (dispatch) => {
+        dispatch(setDefaultButton(true, itemId));
+        event.persist();
+        Api.set_unfollow(itemId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setFollow(event.target.dataset.id));
+            }
+        }).catch(response => response);
+        setTimeout(() => {
+            dispatch(setDefaultButton(false, itemId));
+        }, 15000)
+    }
+};
+
+export const unfollowThunkCreator = (event, itemId) => {
+    return (dispatch) => {
+        dispatch(setDefaultButton(true, itemId));
+        event.persist();
+        Api.set_unfollow(itemId).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setUnFollow(event.target.dataset.id))
+            }
+        }).catch(response => response);
+        setTimeout(() => {
+            dispatch(setDefaultButton(false, itemId));
+        }, 15000)
+    }
+};
 

@@ -24,14 +24,14 @@ const get_on_page_changed = (pageNumber, pageSize)=>{
 const set_unfollow = (itemId)=>{
     return axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${itemId}`, {
         withCredentials: true,
-        headers: {'API-KEY':'8635547c-5fc1-4f81-b1fd-19584dd1e0c4'},
+        headers: {'API-KEY':'c2b2731d-a743-4e80-8839-a61262457b3d'},
     })
 };
 
 const set_follow = (itemId)=>{
     return axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${itemId}`, {} , {
         withCredentials: true,
-        headers: {'API-KEY':'8635547c-5fc1-4f81-b1fd-19584dd1e0c4'},
+        headers: {'API-KEY':'c2b2731d-a743-4e80-8839-a61262457b3d'},
     })
 };
 

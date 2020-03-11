@@ -9,6 +9,8 @@ const UsersUI = (props)=>{
                                                     defaultButton={props.defaultButton}
                                                     setUnFollow={props.setUnFollow}
                                                     setDefaultButton={props.setDefaultButton}
+                                                    followThunkCreator = {props.followThunkCreator}
+                                                    unfollowThunkCreator = {props.unfollowThunkCreator}
                                                     />);
 
     let paginCount = props.totalUsersCount / props.pageSize;
