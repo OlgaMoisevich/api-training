@@ -7,14 +7,18 @@ let initialState = {
     id: null,
     login: null,
     email: null,
+    isAuth: false,
 };
+
+
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_DATA:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: true,
             };
         default:
             return state;
@@ -24,10 +28,12 @@ export const authReducer = (state = initialState, action) => {
 
 export const setAuthData = (data) => ({type: SET_AUTH_DATA, data: data});
 
-export const setAuthDataThunkCreator = ()=>{
-    return (dispatch)=>{
-        Api.set_auth_data().then(response=>{
-            dispatch(setAuthData(response.data.data))
+export const setAuthDataThunkCreator = () => {
+    return (dispatch) => {
+        Api.set_auth_data().then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthData(response.data.data))
+            }
         })
     }
 };

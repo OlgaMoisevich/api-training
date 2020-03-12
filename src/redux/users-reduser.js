@@ -157,7 +157,7 @@ export const unfollowThunkCreator = (event, itemId) => {
     return (dispatch) => {
         dispatch(setDefaultButton(true, itemId));
         event.persist();
-        Api.set_unfollow(itemId).then(response => {
+        Api.set_follow(itemId).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(setUnFollow(event.target.dataset.id))
             }
