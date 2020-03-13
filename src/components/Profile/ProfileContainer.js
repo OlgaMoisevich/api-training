@@ -19,19 +19,18 @@ class ProfileContainerComponent extends React.Component{
 }
 
 
-let WithUrlDataContainerComponent = WithAuthRedirect(ProfileContainerComponent);
-console.log('WithUrlDataContainerComponent', WithUrlDataContainerComponent);
+const WithUrlDataContainerComponent = WithAuthRedirect(ProfileContainerComponent);
 
 let mapStateToProps = (store) => {
     return {
         profile: store.profilePage.profile,
-        authData: store.authReducer.isAuth,
     }
 };
 
 const ProfileContainer = connect(mapStateToProps, {
     setProfileThunkCreator
 
-})(withRouter(WithUrlDataContainerComponent));
+})(withRouter(WithUrlDataContainerComponent ));
+
 
 export default ProfileContainer
