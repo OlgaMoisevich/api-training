@@ -3,6 +3,7 @@ import {updateNewMessageBodyCreator_dialogs, updateNewTextActionCreator_dialogs}
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {WithAuthRedirect} from "../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 // const DialogsContainer = () => {
@@ -54,8 +55,14 @@ let mapDispatchToProps = (dispatch)=>{
     }
 };
 
-const WithUrlDataContainerComponent = WithAuthRedirect(Dialogs);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    WithAuthRedirect
+)
+(Dialogs);
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent);
+// способ до использования compose (альтернативный способ)
 
-export default DialogsContainer
+// const WithUrlDataContainerComponent = WithAuthRedirect(Dialogs);
+// const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(WithUrlDataContainerComponent);
+// export default DialogsContainer
