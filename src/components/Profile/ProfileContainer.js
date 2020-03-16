@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {setProfileThunkCreator} from "../../redux/profile-reducer";
+import {setProfileThunkCreator, updateStatus} from "../../redux/profile-reducer";
 import {Redirect, withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -22,13 +22,14 @@ class ProfileContainerComponent extends React.Component{
 let mapStateToProps = (store) => {
     return {
         profile: store.profilePage.profile,
+        status: store.profilePage.status,
     }
 };
 
 export default compose(
-    connect(mapStateToProps, {setProfileThunkCreator}),
+    connect(mapStateToProps, {setProfileThunkCreator,  updateStatus,}),
     withRouter,
-    WithAuthRedirect
+    WithAuthRedirect,
 )(ProfileContainerComponent);
 
 // способ до использования compose (альтернативный способ)

@@ -22,7 +22,6 @@ const get_on_page_changed = (pageNumber, pageSize) => {
 };
 
 const set_unfollow = (itemId) => {
-    console.log('1', itemId)
     return axios.delete(baseURL + `follow/${itemId}`, {
         withCredentials: true,
         headers: {'API-KEY': 'c2b2731d-a743-4e80-8839-a61262457b3d'},
@@ -30,11 +29,24 @@ const set_unfollow = (itemId) => {
 };
 
 const set_follow = (itemId) => {
-    console.log('2', itemId)
     return axios.post(baseURL + `follow/${itemId}`, {}, {
         withCredentials: true,
         headers: {'API-KEY': 'c2b2731d-a743-4e80-8839-a61262457b3d'},
     })
+};
+
+const update_status = (status) => {
+    return axios.put(baseURL + `/profile/status`, {status: status} ,{
+        withCredentials: true,
+        headers: {'API-KEY': 'c2b2731d-a743-4e80-8839-a61262457b3d'},
+    });
+};
+
+const get_status = (status) => {
+    return axios.get(baseURL + `/profile/status/${status}`, {} ,{
+        withCredentials: true,
+        headers: {'API-KEY': 'c2b2731d-a743-4e80-8839-a61262457b3d'},
+    });
 };
 
 export default {
@@ -44,4 +56,6 @@ export default {
     get_on_page_changed,
     set_unfollow,
     set_follow,
+    update_status,
+    get_status,
 }

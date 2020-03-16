@@ -35,7 +35,7 @@ const ProfileInfo = (props) => {
                     <p className={s.contacts}><span>{props.profile.contacts.facebook}</span><span>{props.profile.contacts.github}</span><span>{props.profile.contacts.twitter}</span></p>
                 </div>
                 <div>
-                    <ProfileStatus status={props.profile.fullName}/>
+                    <ProfileStatus status={props.profile.fullName} update={props.update} data_status_after_update={props.status}/>
                 </div>
             </div>
         </div>
