@@ -35,7 +35,6 @@ export const profilesReducer = (state = initialState, action) => {
                 profile: action.profile,
             };
         case SET_STATUS:
-            console.log('action.status', action.status);
             return {
                 ...state,
                 status: action.status,
@@ -70,10 +69,11 @@ export const getUserStatus = (status) => {
 };
 
 export const updateStatus = (status) => {
-    console.log('status', status);
+    // debugger
     return (dispatch) => {
         Api.update_user_status(status)
             .then(response => {
+                debugger
                 if (response.data.resultCode === 0) {
                     dispatch(setStatus(status))
                 }

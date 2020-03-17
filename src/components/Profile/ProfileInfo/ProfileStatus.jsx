@@ -18,11 +18,19 @@ class ProfileStatus extends React.Component {
         this.setState({editMode:false})
     };
 
-    fillingInput = (e) => {
+    fillingInput = async (e) => {
         let data = e.target.value;
-        this.setState({status: data});
+        await this.setState({status: data});  //  исп. async await, тк функция this.setState асинхронная
         this.props.update(this.state.status);
     };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.data_status_after_update !== this.props.data_status_after_update) {
+            this.setState({
+                status: this.props.data_status_after_update,
+            })
+        }
+    }
 
     render() {
         return (
