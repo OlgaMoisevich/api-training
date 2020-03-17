@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {setProfileThunkCreator, updateStatus} from "../../redux/profile-reducer";
+import {getUserStatus, setProfileThunkCreator, updateStatus} from "../../redux/profile-reducer";
 import {Redirect, withRouter} from "react-router-dom";
 import {WithAuthRedirect} from "../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -12,6 +12,7 @@ class ProfileContainerComponent extends React.Component{
     componentDidMount() {
         let userId = this.props.match.params.userId || 2;
         this.props.setProfileThunkCreator(userId);
+        this.props.getUserStatus(userId); //запрос на получение начальных данных
     }
 
     render() {
@@ -27,7 +28,7 @@ let mapStateToProps = (store) => {
 };
 
 export default compose(
-    connect(mapStateToProps, {setProfileThunkCreator,  updateStatus,}),
+    connect(mapStateToProps, {setProfileThunkCreator,  updateStatus, getUserStatus}),
     withRouter,
     WithAuthRedirect,
 )(ProfileContainerComponent);

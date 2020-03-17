@@ -35,15 +35,16 @@ const set_follow = (itemId) => {
     })
 };
 
-const update_status = (status) => {
+const update_user_status = (status) => {
     return axios.put(baseURL + `/profile/status`, {status: status} ,{
         withCredentials: true,
         headers: {'API-KEY': 'c2b2731d-a743-4e80-8839-a61262457b3d'},
     });
 };
 
-const get_status = (status) => {
-    return axios.get(baseURL + `/profile/status/${status}`, {} ,{
+
+const get_user_status = (userId) => {
+    return axios.get(baseURL + `/profile/status/${userId}`, {} ,{
         withCredentials: true,
         headers: {'API-KEY': 'c2b2731d-a743-4e80-8839-a61262457b3d'},
     });
@@ -56,6 +57,6 @@ export default {
     get_on_page_changed,
     set_unfollow,
     set_follow,
-    update_status,
-    get_status,
+    update_user_status,
+    get_user_status,
 }
