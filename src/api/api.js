@@ -50,6 +50,16 @@ const get_user_status = (userId) => {
     });
 };
 
+const set_login_api = (email, password, rememberMe = false, captcha = false) => {
+    return axios.post(baseURL + `/auth/login`,
+        {email, password, rememberMe, captcha},
+        {
+            withCredentials: true,
+            headers: {'API-KEY': 'c2b2731d-a743-4e80-8839-a61262457b3d'},
+        }
+    )
+};
+
 export default {
     set_auth_data,
     set_profile,
@@ -59,4 +69,5 @@ export default {
     set_follow,
     update_user_status,
     get_user_status,
+    set_login_api,
 }

@@ -1,6 +1,8 @@
 import React from 'react'
 import {Field, reduxForm} from "redux-form";
 import s from './Login.module.css'
+import {setLogin} from "../../redux/auth-reducer";
+import {connect} from "react-redux";
 
 
 const LoginPageForm = (props) => {
@@ -25,14 +27,19 @@ const LoginPageForm = (props) => {
 const ContactForm = reduxForm({form: 'login'})(LoginPageForm);
 
 const LoginPage = (props) => {
-    const onSubmit= (props) => {
-        console.log( '***', props);
+    debugger
+
+    const onSubmit = (props_data) => {
+        props.setLogin(props_data.login, props_data.password = '12345', props_data.input = false);
     };
-    return (<div className={s.wrapper}>
+
+    return (
+        <div className={s.wrapper}>
             <h2>Login</h2>
             <ContactForm onSubmit={onSubmit}/>
         </div>
     )
 };
 
+// export default connect(null, {setLogin})(LoginPage);
 export default LoginPage
