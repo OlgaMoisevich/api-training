@@ -1,0 +1,13 @@
+.wrapper {
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+
+.input_field {
+   margin-top: 20px;
+}
+
+.input_button{
+    margin: 10px 0;
+}
