@@ -51,7 +51,7 @@ export const setLogin = (login, password, input) => {
         Api.set_login_api(login, password, input)
             .then(response => {
                 if (response.data.resultCode === 0) {
-                    dispatch(setAuthData(response.data.data))
+                    dispatch(setAuthDataThunkCreator(response.data.data))
                 }
             })
             .catch(response => console.log(response))

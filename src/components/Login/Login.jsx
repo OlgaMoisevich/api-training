@@ -1,9 +1,6 @@
 import React from 'react'
 import {Field, reduxForm} from "redux-form";
 import s from './Login.module.css'
-import {setLogin} from "../../redux/auth-reducer";
-import {connect} from "react-redux";
-
 
 const LoginPageForm = (props) => {
     return (
@@ -27,10 +24,8 @@ const LoginPageForm = (props) => {
 const ContactForm = reduxForm({form: 'login'})(LoginPageForm);
 
 const LoginPage = (props) => {
-    debugger
-
     const onSubmit = (props_data) => {
-        props.setLogin(props_data.login, props_data.password = '12345', props_data.input = false);
+        return props.setLogin(props_data.login, props_data.password = '12345', props_data.input = false);
     };
 
     return (
@@ -41,5 +36,4 @@ const LoginPage = (props) => {
     )
 };
 
-// export default connect(null, {setLogin})(LoginPage);
 export default LoginPage

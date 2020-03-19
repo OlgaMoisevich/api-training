@@ -5,10 +5,9 @@ import LoginPage from "./Login";
 
 
 class LoginContainer extends React.Component {
-
     render() {
         return (
-            <LoginPage  props = {this.props}/>
+            <LoginPage props={this.props} setLogin={this.props.setLogin} />
         )
     }
 };
@@ -20,4 +19,4 @@ let mapStateToProps = (store) => {
     }
 };
 
-export default connect( mapStateToProps, {setLogin})(LoginContainer);
+export default connect(mapStateToProps, {setLogin})(LoginContainer);
