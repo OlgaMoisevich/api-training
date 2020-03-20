@@ -17,3 +17,20 @@
 .header_content{
     margin-right: 20px;
 }
+
+.logout {
+    width: 98px;
+    height: 25px;
+    padding: 0;
+    font-size: 15px;
+    display: inline-block;
+    margin-left: 10px;
+    outline: none;
+}
+
+.logout:hover {
+    color: #9555af;
+    border-color: currentColor;
+    background-color: white;
+    transition: all 1s ease;
+}

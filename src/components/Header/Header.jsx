@@ -14,6 +14,11 @@ const Header = (props) => {
                     <span className={s.text_login}>
                         {(props.login)?props.login:'Login'}
                     </span>
+                    { props.login &&
+                        <button className={s.logout} onClick={props.outLogin}>
+                            Logout
+                        </button>
+                    }
                 </div>
             </div>
         </header>

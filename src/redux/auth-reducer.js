@@ -19,8 +19,7 @@ export const authReducer = (state = initialState, action) => {
         case SET_AUTH_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true,
+                ...action.payload,
             };
         case SET_LOGIN_RESPONSE:
             return {
@@ -33,14 +32,15 @@ export const authReducer = (state = initialState, action) => {
 };
 
 
-export const setAuthData = (data) => ({type: SET_AUTH_DATA, data: data});
+export const setAuthData = (id, login, email, isAuth) => ({type: SET_AUTH_DATA, payload: {id, login, email, isAuth}});
 export const setLoginResponse = (data) => ({type: SET_LOGIN_RESPONSE, login: data});
 
 export const setAuthDataThunkCreator = () => {
     return (dispatch) => {
         Api.set_auth_data().then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(setAuthData(response.data.data))
+                let {id, login, email} = response.data.data;
+                dispatch(setAuthData(id, login, email, true))
             }
         })
     }
@@ -58,3 +58,15 @@ export const setLogin = (login, password, input) => {
     }
 };
 
+
+export const outLogin = (login, password, input) => {
+    return (dispatch) => {
+        Api.out_login_api()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(setAuthData(null, null, null, false))
+                }
+            })
+            .catch(response => console.log(response))
+    }
+};

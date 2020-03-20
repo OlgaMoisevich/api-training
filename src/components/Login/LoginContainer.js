@@ -16,6 +16,7 @@ class LoginContainer extends React.Component {
 let mapStateToProps = (store) => {
     return {
         isLogin: store.authReducer.isLogin,
+        isAuth: store.authReducer.isAuth,
     }
 };
 

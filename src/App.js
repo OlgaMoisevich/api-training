@@ -19,7 +19,7 @@ function App() {
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>} />
                     <Route path='/dialogs' render={() => <DialogsContainer/>} />
                     <Route path='/users' render={() => <UsersContainer/>} />
-                    <Route path='/login' render={() => <LoginPage/>} />
+                    <Route path='/' render={() => <LoginPage/>} />
                 </div>
             </div>
         </BrowserRouter>
