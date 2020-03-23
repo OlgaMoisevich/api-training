@@ -1,5 +1,5 @@
 import React from 'react'
-import {updateNewMessageBodyCreator_dialogs, updateNewTextActionCreator_dialogs} from "../../redux/dialogs-reducer";
+import {updateNewMessageBodyCreator_dialogs} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {WithAuthRedirect} from "../hoc/withAuthRedirect";
@@ -37,20 +37,16 @@ import {compose} from "redux";
 //     )
 // };
 
-let mapStateToProps = (store)=>{
+let mapStateToProps = (store) => {
     return {
         dialogsData: store.dialogsPage,
         authData: store.authReducer.isAuth,
     }
 };
-let mapDispatchToProps = (dispatch)=>{
-    return{
-        postChangeDialog: (newText)=>{
-            dispatch(updateNewTextActionCreator_dialogs(newText))
-        },
-        updateNewMessageBodyCreator: ()=>{
-
-            dispatch( updateNewMessageBodyCreator_dialogs())
+let mapDispatchToProps = (dispatch) => {
+    return {
+        updateNewMessageBodyCreator: (newText) => {
+            dispatch(updateNewMessageBodyCreator_dialogs(newText))
         }
     }
 };

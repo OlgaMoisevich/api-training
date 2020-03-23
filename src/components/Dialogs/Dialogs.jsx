@@ -2,17 +2,21 @@ import React from 'react'
 import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {Redirect} from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
 
+const DialogsForm = (props) => {
+        return      <form onSubmit={props.handleSubmit}>
+                        <Field name="dialogs_form_textarea" cols="30" rows="5" value={props.dialogsData.newPostTextDialog} placeholder='Enter your message' component={'textarea'}/><br/>
+                        <button>Add</button>
+                     </form>
+};
+
+const TextareaForm = reduxForm({form: 'dialog_textarea'})(DialogsForm);
 
 const Dialogs = (props) => {
 
-    let onPostChangeDialog = function (e) {
-        let newText = e.target.value;
-        props.postChangeDialog(newText);
-    };
-    let onUpdateNewMessageBodyCreator = function () {
-        props.updateNewMessageBodyCreator();
+    let onUpdateNewMessageBodyCreator = function (data) {
+        props.updateNewMessageBodyCreator(data['dialogs_form_textarea']);
     };
 
     return (
@@ -23,12 +27,7 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 <Message messageData={props.dialogsData}/>
                 <p>{props.dialogsData.messageDialog}</p>
-                <div>
-                    <textarea name="" id="" cols="30" rows="5" value={props.dialogsData.newPostTextDialog}
-                              placeholder='Enter your message'
-                              onChange={onPostChangeDialog}/><br/>
-                    <button onClick={onUpdateNewMessageBodyCreator}>Add</button>
-                </div>
+                <TextareaForm {...props} onSubmit={onUpdateNewMessageBodyCreator}/>
             </div>
         </div>
     )

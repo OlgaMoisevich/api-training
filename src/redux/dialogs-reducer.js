@@ -1,4 +1,3 @@
-const UPDATE_NEW_POST_TEXT_DIALOGS = 'UPDATE-NEW-POST-TEXT_DIALOGS';
 const UPDATE_NEW_MESSAGE_BODY_DIALOGS = 'UPDATE_NEW_MESSAGE_BODY_DIALOGS';
 
 let initialState = {
@@ -36,29 +35,19 @@ let initialState = {
             src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGjvKSeYKpoeC4v9d9_52ZhYlV__HtXaJQg-eU2eu9gfx_NfBD'
         },
     ],
-    newPostTextDialog: '',
     messageDialog: [],
 };
 
 export const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_POST_TEXT_DIALOGS:
-            return {
-                ...state,
-                newPostTextDialog: action.newText
-            };
         case UPDATE_NEW_MESSAGE_BODY_DIALOGS:
             return {
                 ...state,
-                messageData: [...state.messageData, {id: '6', message: state.newPostTextDialog}],
-                newPostTextDialog: '',
+                messageData: [...state.messageData, {id: '6', message: action.newText}],
             };
         default:
             return state;
     }
 };
-
-
-export const updateNewMessageBodyCreator_dialogs = () => ({type: UPDATE_NEW_MESSAGE_BODY_DIALOGS});
-export const updateNewTextActionCreator_dialogs = (text) => ({type: UPDATE_NEW_POST_TEXT_DIALOGS, 'newText': text});
+export const updateNewMessageBodyCreator_dialogs = (newText) => ({type: UPDATE_NEW_MESSAGE_BODY_DIALOGS, newText});
 
