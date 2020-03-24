@@ -3,10 +3,21 @@ import s from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import {Field, reduxForm} from "redux-form";
+import {renderField} from "../common/FormControls/FormControls";
+import {maxLength, required} from "../../utils/validators";
+
+
+const maxLength5 = maxLength(7);
 
 const DialogsForm = (props) => {
         return      <form onSubmit={props.handleSubmit}>
-                        <Field name="dialogs_form_textarea" cols="30" rows="5" value={props.dialogsData.newPostTextDialog} placeholder='Enter your message' component={'textarea'}/><br/>
+                        <Field name="dialogs_form_textarea"
+                               value={props.dialogsData.newPostTextDialog}
+                               placeholder='Enter your message'
+                               component={renderField}
+                               validate={[required, maxLength5]}
+                               data={'textarea'}
+                        /><br/>
                         <button>Add</button>
                      </form>
 };

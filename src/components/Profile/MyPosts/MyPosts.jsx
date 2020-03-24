@@ -2,13 +2,19 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
 import {Field, reduxForm} from "redux-form";
+import {renderField} from "./../../common/FormControls/FormControls"
+import {maxLength, required} from "../../../utils/validators";
 
-
+const maxLength5 = maxLength(5);
 const TextareaField = (props) => {
-
     return (
         <form className={s.postsBlock} onSubmit={props.handleSubmit}>
-            <Field component={'textarea'} name={"add_my_post_textarea"} cols="60" rows="5"/><br/>
+            <Field component={renderField}
+                   name={"add_my_post_textarea"}
+                   validate={[required, maxLength5]}
+                   placeholder={'Введите текст'}
+                   data={'textarea'}
+            /><br/>
             <button className={s.button_add}>Add</button>
         </form>
     )
@@ -21,6 +27,7 @@ const MyPosts = (props) => {
                                                       key={post.id}/>);
 
     let onAddPost = (data) => {
+        debugger
         props.addPost(data['add_my_post_textarea']);
     };
 

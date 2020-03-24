@@ -1,0 +1,9 @@
+.wrapper_error textarea, .wrapper_error input {
+    border: 1px solid red;
+    outline: none;
+}
+
+.wrapper_error span {
+    color: red;
+    outline: none;
+}

@@ -2,18 +2,20 @@ import React from 'react'
 import {Field, reduxForm} from "redux-form";
 import s from './Login.module.css'
 import {Redirect} from "react-router-dom";
+import {required} from "../../utils/validators";
+import {renderField} from "../common/FormControls/FormControls";
 
 const LoginPageForm = (props) => {
     return (
-        <form onSubmit={props.handleSubmit} >
+        <form onSubmit={props.handleSubmit}>
             <div className={s.input_field}>
-                <Field type="text" placeholder={"Login"} name={"login"} component="input"/>
+                <Field type="text" placeholder={"Login"} name={"login"} component={renderField} validate={[required]}  data={'input'}/>
             </div>
             <div className={s.input_field}>
-                <Field type={"password"} placeholder={"Password"} name={"password"} component="input"/>
+                <Field type={"password"} placeholder={"Password"} name={"password"} component={renderField} validate={[required]} data={'input'}/>
             </div>
             <div className={s.input_field}>
-                <Field type="checkbox" name={"remember_me"} component="input" /> remember me
+                <Field type={"checkbox"} name={"remember_me"} component={renderField} validate={[required]} data={'input'} /> remember me
             </div>
             <div className={s.input_button}>
                 <button>Login</button>
