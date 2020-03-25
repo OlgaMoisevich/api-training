@@ -11,6 +11,7 @@ class ProfileContainerComponent extends React.Component{
 
     componentDidMount() {
         let userId = this.props.match.params.userId || 2;
+        console.log('userId', userId);
         this.props.setProfileThunkCreator(userId);
         this.props.getUserStatus(userId); //запрос на получение начальных данных
     }

@@ -11,3 +11,8 @@
 .input_button{
     margin: 10px 0;
 }
+
+.general_error{
+    color:red;
+    border: 1px solid red;
+}

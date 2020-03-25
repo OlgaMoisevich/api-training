@@ -8,6 +8,8 @@ import {renderField} from "../common/FormControls/FormControls";
 const LoginPageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
+            {/*для вывода общей ошибки*/}
+            <div className={props.error && s.general_error} name={"general_error"}>{props.error}</div>
             <div className={s.input_field}>
                 <Field type="text" placeholder={"Login"} name={"login"} component={renderField} validate={[required]}  data={'input'}/>
             </div>

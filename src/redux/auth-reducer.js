@@ -1,5 +1,6 @@
 import Api from "../api/api";
 import {unfollowThunkCreator} from "./users-reduser";
+import {stopSubmit} from "redux-form";
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
 const SET_LOGIN_RESPONSE = 'SET_LOGIN_RESPONSE';
@@ -52,6 +53,9 @@ export const setLogin = (login, password, input) => {
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(setAuthDataThunkCreator(response.data.data))
+                } else {
+                    let action = stopSubmit("login", {_error: 'Email is wrong'});
+                    dispatch(action);
                 }
             })
             .catch(response => console.log(response))
