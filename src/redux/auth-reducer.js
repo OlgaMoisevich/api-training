@@ -38,12 +38,14 @@ export const setLoginResponse = (data) => ({type: SET_LOGIN_RESPONSE, login: dat
 
 export const setAuthDataThunkCreator = () => {
     return (dispatch) => {
-        Api.set_auth_data().then(response => {
-            if (response.data.resultCode === 0) {
-                let {id, login, email} = response.data.data;
-                dispatch(setAuthData(id, login, email, true))
-            }
-        })
+        return Api.set_auth_data()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    console.log('response.data', response.data)
+                    let {id, login, email} = response.data.data;
+                    dispatch(setAuthData(id, login, email, true))
+                }
+            });
     }
 };
 
