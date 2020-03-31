@@ -9,8 +9,6 @@ import HeaderContainerConnect from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/LoginContainer";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {getUserStatus, setProfileThunkCreator, updateStatus} from "./redux/profile-reducer";
-import {WithAuthRedirect} from "./components/hoc/withAuthRedirect";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader";
 
@@ -21,7 +19,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log('***', this.props.initialized);
         if(!this.props.initialized){
             return <Preloader/>
         }
