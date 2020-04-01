@@ -6,7 +6,14 @@ import {
 } from "../../redux/users-reduser";
 import UsersUI from "./UsersUI";
 import Preloader from "../common/Preloader";
-
+import {
+    currentPage,
+    defaultButton,
+    getUsersPage,
+    isFetching,
+    pageSize,
+    totalUsersCount
+} from "../../redux/utilsForState";
 
 // Все пользователи
 class UsersContainerComponent extends React.Component {
@@ -40,12 +47,12 @@ class UsersContainerComponent extends React.Component {
 
 let mapStateToProps = (store)=>{
     return {
-        users: store.usersPage.users,
-        totalUsersCount: store.usersPage.totalUsersCount,
-        pageSize: store.usersPage.pageSize,
-        currentPage: store.usersPage.currentPage,
-        isFetching: store.usersPage.isFetching,
-        defaultButton: store.usersPage.defaultButton,
+        users: getUsersPage(store),
+        totalUsersCount: totalUsersCount(store),
+        pageSize: pageSize(store),
+        currentPage: currentPage(store),
+        isFetching: isFetching(store),
+        defaultButton: defaultButton(store),
     }
 };
     //1сп
