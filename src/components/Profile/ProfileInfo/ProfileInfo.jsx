@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css'
 import img from '../../../assets/images 2.jpeg'
 import Preloader from "../../common/Preloader";
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
 const ProfileInfo = (props) => {
@@ -35,7 +36,8 @@ const ProfileInfo = (props) => {
                     <p className={s.contacts}><span>{props.profile.contacts.facebook}</span><span>{props.profile.contacts.github}</span><span>{props.profile.contacts.twitter}</span></p>
                 </div>
                 <div>
-                    <ProfileStatus status={props.profile.fullName} update={props.update} data_status_after_update={props.status}/>
+                    {/*<ProfileStatus status={props.profile.fullName} update={props.update} data_status_after_update={props.status}/>*/}
+                    <ProfileStatusWithHooks status={props.profile.fullName} update={props.update} data_status_after_update={props.status}/>
                 </div>
             </div>
         </div>

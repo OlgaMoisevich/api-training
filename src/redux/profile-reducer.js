@@ -61,7 +61,6 @@ export const updateStatus = (status) => {
     return (dispatch) => {
         Api.update_user_status(status)
             .then(response => {
-                debugger
                 if (response.data.resultCode === 0) {
                     dispatch(setStatus(status))
                 }

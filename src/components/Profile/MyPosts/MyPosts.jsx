@@ -27,7 +27,6 @@ const MyPosts = (props) => {
                                                       key={post.id}/>);
 
     let onAddPost = (data) => {
-        debugger
         props.addPost(data['add_my_post_textarea']);
     };
 

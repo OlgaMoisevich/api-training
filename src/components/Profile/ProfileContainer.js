@@ -11,17 +11,18 @@ class ProfileContainerComponent extends React.Component{
 
     componentDidMount() {
         let userId = this.props.match.params.userId || 2;
-        console.log('userId', userId);
         this.props.setProfileThunkCreator(userId);
         this.props.getUserStatus(userId); //запрос на получение начальных данных
     }
 
     render() {
+        console.log('RENDER PROFILE');
         return (<Profile {...this.props} profile={this.props.profile}/>)
     }
 }
 
 let mapStateToProps = (store) => {
+    console.log('mapStateToProps PROFILE')
     return {
         profile: store.profilePage.profile,
         status: store.profilePage.status,
